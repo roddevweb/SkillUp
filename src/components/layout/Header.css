@@ -1,0 +1,95 @@
+.navbar-brand {
+  font-size: 1.5rem;
+  padding: 0;
+}
+
+.navbar-brand span.text-primary {
+  color: #ff6b35 !important;
+}
+
+.logo-image {
+  height: 75px;
+  width: auto;
+  transition: transform 0.3s ease;
+  margin: 0;
+  padding: 0;
+  object-fit: contain;
+}
+
+.logo-image:hover {
+  transform: scale(1.05);
+}
+
+/* Styles du menu de navigation */
+.nav-link {
+  color: #333 !important;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ff6b35 !important;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: #ff6b35;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 60%;
+}
+
+.navbar-toggler {
+  border: none;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 107, 53, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* Ajustement pour les écrans de taille moyenne */
+@media (max-width: 768px) {
+  .logo-image {
+    height: 60px;
+  }
+  
+  .nav-link::after {
+    display: none;
+  }
+}
+
+/* Ajustement pour les petits écrans */
+@media (max-width: 576px) {
+  .logo-image {
+    height: 50px;
+  }
+}
+
+.navbar {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+
+/* Ces styles sont maintenant gérés dans App.css
+.btn-primary {
+  background-color: #ff6b35;
+  border-color: #ff6b35;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #e55a2b;
+  border-color: #e55a2b;
+}
+*/ 

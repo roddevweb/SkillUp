@@ -1,3 +1,70 @@
+# SkillUp - Plateforme d'apprentissage de langues
+
+SkillUp est une application web moderne dédiée à l'apprentissage des langues étrangères. L'application offre une interface utilisateur intuitive et conviviale qui permet aux utilisateurs de s'inscrire, de se connecter et d'accéder à diverses fonctionnalités d'apprentissage.
+
+> **Note** : Ce projet a été réalisé dans le cadre du travail de fin de cours de Programmation web au CÉGEP Gérald-Godin.
+
+## Équipe de développement
+
+- **Rodrigo Silva** - Front-end
+- **Dominey Angela** - Backend
+- **Morgunova Olga** - Backend
+
+## Fonctionnalités
+
+- Interface utilisateur moderne et réactive
+- Système d'authentification complet (inscription, connexion, récupération de mot de passe)
+- Design ergonomique et adaptatif (responsive)
+- Présentation des différentes langues disponibles
+- Témoignages d'utilisateurs
+- Page d'accueil avec mise en avant des avantages
+
+## Technologies utilisées
+
+- React
+- React Router pour la navigation
+- React Bootstrap pour les composants UI
+- CSS personnalisé pour le design spécifique
+- Bootstrap Icons pour les icônes
+
+## Installation
+
+1. Clonez ce dépôt
+```
+git clone <url-du-repo>
+```
+
+2. Installez les dépendances
+```
+cd skillup
+npm install
+```
+
+3. Lancez l'application en mode développement
+```
+npm start
+```
+L'application sera accessible à l'adresse [http://localhost:3000](http://localhost:3000).
+
+## Structure du projet
+
+- `/public` - Fichiers publics (HTML, favicon, etc.)
+- `/src` - Code source de l'application
+  - `/assets` - Images et ressources statiques
+  - `/components` - Composants réutilisables
+    - `/common` - Composants communs (boutons, icônes, etc.)
+    - `/layout` - Composants de mise en page (header, footer, etc.)
+  - `/pages` - Pages principales de l'application
+  - `/styles` - Fichiers CSS globaux
+
+## Contribution
+
+Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou à soumettre une pull request.
+
+## Licence
+
+Ce projet est sous licence MIT.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
