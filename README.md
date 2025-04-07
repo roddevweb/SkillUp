@@ -2,9 +2,11 @@
 
 SkillUp est une application web moderne dédiée à l'apprentissage des langues étrangères. L'application offre une interface utilisateur intuitive et conviviale qui permet aux utilisateurs de s'inscrire, de se connecter et d'accéder à diverses fonctionnalités d'apprentissage.
 
-> **Note** : Ce projet a été réalisé dans le cadre du travail de fin de cours de Programmation web au CÉGEP Gérald-Godin.
+## À propos du projet
 
-## Équipe de développement
+Ce projet a été réalisé dans le cadre du travail de fin de cours de Programmation Web au CEGEP Gerald-Godin.
+
+### Équipe
 
 - **Rodrigo Silva** - Front-end
 - **Dominey Angela** - Backend
