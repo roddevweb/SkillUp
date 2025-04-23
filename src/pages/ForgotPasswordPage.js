@@ -8,16 +8,20 @@ const ForgotPasswordPage = () => {
   const [submitted, setSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
+  const validateEmail = (email) => {
+    return email.includes('@') && email.includes('.');
+  };
+
   const handleChange = (e) => {
     setEmail(e.target.value);
+    setErrorMessage('');
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Validation simple
-    if (!email || !email.includes('@')) {
-      setErrorMessage('Veuillez entrer une adresse email valide');
+    if (!validateEmail(email)) {
+      setErrorMessage("Veuillez inclure un '@' dans l'adresse courriel");
       return;
     }
     
@@ -50,7 +54,7 @@ const ForgotPasswordPage = () => {
                       </Alert>
                     )}
 
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={handleSubmit} noValidate>
                       <Form.Group className="mb-4">
                         <Form.Control
                           type="email"

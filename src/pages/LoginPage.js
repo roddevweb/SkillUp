@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Card, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './LoginPage.css';
 
@@ -9,6 +9,11 @@ const LoginPage = () => {
     password: '',
     rememberMe: false
   });
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const validateEmail = (email) => {
+    return email.includes('@') && email.includes('.');
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -16,10 +21,17 @@ const LoginPage = () => {
       ...prevState,
       [name]: type === 'checkbox' ? checked : value
     }));
+    setErrorMessage('');
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    if (!validateEmail(formData.email)) {
+      setErrorMessage("Veuillez inclure un '@' dans l'adresse courriel");
+      return;
+    }
+
     // Ici, vous implémenteriez la logique de connexion
     console.log('Données de connexion soumises:', formData);
   };
@@ -36,7 +48,13 @@ const LoginPage = () => {
                   Bienvenue sur SkillUp, connectez-vous pour continuer
                 </p>
 
-                <Form onSubmit={handleSubmit}>
+                {errorMessage && (
+                  <Alert variant="danger" className="mb-3">
+                    {errorMessage}
+                  </Alert>
+                )}
+
+                <Form onSubmit={handleSubmit} noValidate>
                   <Form.Group className="mb-3">
                     <Form.Control
                       type="email"

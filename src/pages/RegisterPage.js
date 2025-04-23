@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Card, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './RegisterPage.css';
 // Remplacer l'image locale par une URL externe
@@ -13,6 +13,11 @@ const RegisterPage = () => {
     confirmPassword: '',
     acceptTerms: false
   });
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const validateEmail = (email) => {
+    return email.includes('@') && email.includes('.');
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -20,10 +25,37 @@ const RegisterPage = () => {
       ...prevState,
       [name]: type === 'checkbox' ? checked : value
     }));
+    setErrorMessage('');
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!formData.fullName.trim()) {
+      setErrorMessage('Le nom complet est requis');
+      return;
+    }
+
+    if (!validateEmail(formData.email)) {
+      setErrorMessage("Veuillez inclure un '@' dans l'adresse courriel");
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      setErrorMessage('Le mot de passe doit contenir au moins 6 caractères');
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      setErrorMessage('Les mots de passe ne correspondent pas');
+      return;
+    }
+
+    if (!formData.acceptTerms) {
+      setErrorMessage("Veuillez accepter les conditions d'utilisation");
+      return;
+    }
+
     // Ici, vous implémenteriez la logique d'inscription
     console.log('Données du formulaire soumises:', formData);
   };
@@ -40,7 +72,13 @@ const RegisterPage = () => {
                   Rejoignez SkillUp et commencez votre voyage linguistique
                 </p>
 
-                <Form onSubmit={handleSubmit}>
+                {errorMessage && (
+                  <Alert variant="danger" className="mb-3">
+                    {errorMessage}
+                  </Alert>
+                )}
+
+                <Form onSubmit={handleSubmit} noValidate>
                   <Form.Group className="mb-3">
                     <Form.Control
                       type="text"
