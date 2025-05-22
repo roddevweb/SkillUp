@@ -32,8 +32,37 @@ const LoginPage = () => {
       return;
     }
 
-    // Ici, vous implémenteriez la logique de connexion
-    console.log('Données de connexion soumises:', formData);
+    fetch('http://localhost:5223/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: formData.email,
+        password: formData.password,
+        rememberMe: formData.rememberMe
+      })
+    })
+      .then(async response => {
+        if (!response.ok) {
+          const error = await response.json();
+          setErrorMessage(error.message || 'Erreur de connexion');
+        } else {
+          const userData = await response.json();
+          console.log('Utilisateur connecté:', userData);
+          
+
+          if (userData.token) {
+            localStorage.setItem('authToken', userData.token);
+            window.location.href = '/dashboard'; 
+          }
+
+          window.location.href = '/courses'; 
+        }
+      })
+      .catch(error => {
+        setErrorMessage('Erreur serveur: ' + error.message);
+      });
   };
 
   return (
