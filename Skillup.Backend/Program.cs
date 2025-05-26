@@ -1,39 +1,47 @@
+using Microsoft.EntityFrameworkCore;
+using Skillup.Backend.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Adiciona serviços ao contêiner.
-builder.Services.AddControllers(); // Habilita o uso de API Controllers
-
-// Configuração de CORS para desenvolvimento
+// Add CORS configuration
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowReactDev",
-        policy =>
-        {
-            policy.WithOrigins("http://localhost:3000") // Permite requisições do React Dev Server (ajuste a porta se necessário)
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
-        });
+    options.AddPolicy("AllowReactApp",
+        builder => builder
+            .WithOrigins("http://localhost:3000")
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials());
 });
 
+// Add services to the container.
 
+builder.Services.AddControllers();
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
+    )
+);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configura o pipeline de requisições HTTP.
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseCors("AllowReactDev"); // Aplica a política de CORS em desenvolvimento
 }
 
-// app.UseHttpsRedirection(); // Vamos manter comentado por enquanto para simplificar
+// Add CORS middleware - must be called before UseAuthorization and MapControllers
+app.UseCors("AllowReactApp");
 
 app.UseAuthorization();
 
-app.MapControllers(); // Mapeia as rotas para os API Controllers
+app.MapControllers();
 
-app.Run(); 
+app.Run();

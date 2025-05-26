@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\M-MSI-CA\\College-Rodrigo\\CEGEP-GERALD-GODIN\\4-Sessao\\Projeto\\app\\skillup\\skillup.backend\\Skillup.Backend.csproj": {}
+    "F:\\M-MSI-CA\\College-Rodrigo\\CEGEP-GERALD-GODIN\\4-Sessao\\Projeto\\app\\skillup\\Skillup.Backend\\Skillup.Backend.csproj": {}
   },
   "projects": {
-    "F:\\M-MSI-CA\\College-Rodrigo\\CEGEP-GERALD-GODIN\\4-Sessao\\Projeto\\app\\skillup\\skillup.backend\\Skillup.Backend.csproj": {
+    "F:\\M-MSI-CA\\College-Rodrigo\\CEGEP-GERALD-GODIN\\4-Sessao\\Projeto\\app\\skillup\\Skillup.Backend\\Skillup.Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\M-MSI-CA\\College-Rodrigo\\CEGEP-GERALD-GODIN\\4-Sessao\\Projeto\\app\\skillup\\skillup.backend\\Skillup.Backend.csproj",
+        "projectUniqueName": "F:\\M-MSI-CA\\College-Rodrigo\\CEGEP-GERALD-GODIN\\4-Sessao\\Projeto\\app\\skillup\\Skillup.Backend\\Skillup.Backend.csproj",
         "projectName": "Skillup.Backend",
-        "projectPath": "F:\\M-MSI-CA\\College-Rodrigo\\CEGEP-GERALD-GODIN\\4-Sessao\\Projeto\\app\\skillup\\skillup.backend\\Skillup.Backend.csproj",
+        "projectPath": "F:\\M-MSI-CA\\College-Rodrigo\\CEGEP-GERALD-GODIN\\4-Sessao\\Projeto\\app\\skillup\\Skillup.Backend\\Skillup.Backend.csproj",
         "packagesPath": "C:\\Users\\Rodrigo Web\\.nuget\\packages\\",
-        "outputPath": "F:\\M-MSI-CA\\College-Rodrigo\\CEGEP-GERALD-GODIN\\4-Sessao\\Projeto\\app\\skillup\\skillup.backend\\obj\\",
+        "outputPath": "F:\\M-MSI-CA\\College-Rodrigo\\CEGEP-GERALD-GODIN\\4-Sessao\\Projeto\\app\\skillup\\Skillup.Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Rodrigo Web\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -38,9 +38,25 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[8.1.1, )"
+              "version": "[6.6.2, )"
             }
           },
           "imports": [
@@ -62,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.115/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.116/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

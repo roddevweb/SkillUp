@@ -28,7 +28,7 @@ const RegisterPage = () => {
     setErrorMessage('');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!formData.fullName.trim()) {
@@ -56,8 +56,32 @@ const RegisterPage = () => {
       return;
     }
 
-    // Ici, vous implémenteriez la logique d'inscription
-    console.log('Données du formulaire soumises:', formData);
+      try {
+    const response = await fetch('http://localhost:5223/api/Auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        fullName: formData.fullName,
+        email: formData.email,
+        password: formData.password,
+        confirmPassword: formData.confirmPassword,
+        acceptTerms: formData.acceptTerms
+      }),
+    });
+
+    const result = await response.json();
+    if (!response.ok) {
+      setErrorMessage(result.message || 'Erreur lors de l’inscription');
+    } else {
+      alert('Inscription réussie');
+      // Redirection vers la page de connexion (à compléter si nécessaire)
+      window.location.href = '/login'; 
+    }
+  } catch (err) {
+    setErrorMessage('Erreur serveur');
+  }
   };
 
   return (
