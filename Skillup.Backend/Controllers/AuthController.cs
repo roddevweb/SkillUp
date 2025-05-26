@@ -67,8 +67,8 @@ namespace SkillUp.Controllers
             var mail = new MailMessage
             {
                 From = new MailAddress(emailSettings.SenderEmail, emailSettings.SenderName),
-                Subject = "Registration Successful",
-                Body = $"Hello {userName},\n\nYour registration was successful!\n\nThank you for joining SkillUp.",
+                Subject = "Inscription réussie",
+                Body = $"Bonjour {userName},\n\nVotre inscription a réussi !\n\nMerci d'avoir rejoint SkillUp.",
                 IsBodyHtml = false
             };
             mail.To.Add(toEmail);
