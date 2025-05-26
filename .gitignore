@@ -24,16 +24,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# Ignorer les fichiers et dossiers de build .NET
-Skillup.Backend/bin/
-Skillup.Backend/obj/
-*.dll
-*.exe
-*.pdb
-*.cache
-*.sourcelink.json
-*.genruntimeconfig.cache
-*.AssemblyInfo.cs
-*.FileListAbsolute.txt
-*.editorconfig
