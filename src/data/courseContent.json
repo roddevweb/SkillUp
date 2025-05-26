@@ -1,0 +1,73 @@
+[
+  {
+    "langue": "anglais",
+    "niveau": "débutant",
+    "etapes": [
+      {
+        "videoUrl": "https://www.youtube.com/embed/L8p8jUZ_YgY",
+        "quiz": {
+          "question": "Comment dit-on 'Bonjour' en anglais ?",
+          "options": ["Hello", "Goodbye", "Please", "Thanks"],
+          "answer": 0,
+          "explanation": "'Hello' signifie 'Bonjour' en anglais."
+        }
+      },
+      {
+        "videoUrl": "https://www.youtube.com/embed/r1jkdmtTHHE",
+        "quiz": null
+      },
+      {
+        "videoUrl": "https://www.youtube.com/embed/ZsApzXKbPiQ",
+        "quiz": null
+      },
+      {
+        "videoUrl": "https://www.youtube.com/embed/JwVaD7RAkrI",
+        "quiz": null
+      },
+      {
+        "videoUrl": "https://www.youtube.com/embed/Zw1MQQMqzrI",
+        "quiz": null
+      },
+      {
+        "videoUrl": "https://www.youtube.com/embed/31QMEE4nPpI",
+        "quiz": null
+      },
+      {
+        "videoUrl": "https://www.youtube.com/embed/cKpUxyQtMHU",
+        "quiz": null
+      },
+      {
+        "videoUrl": "https://www.youtube.com/embed/J3nMCQto_uw",
+        "quiz": null
+      },
+      {
+        "videoUrl": "https://www.youtube.com/embed/3GHt2ZihULc",
+        "quiz": null
+      },
+      {
+        "videoUrl": "https://www.youtube.com/embed/ZU1Zh93R160",
+        "quiz": null
+      },
+      {
+        "videoUrl": "https://www.youtube.com/embed/1yg2_ac9OCo",
+        "quiz": null
+      },
+      {
+        "videoUrl": "https://www.youtube.com/embed/Qi7U1P296dw",
+        "quiz": null
+      },
+      {
+        "videoUrl": "https://www.youtube.com/embed/OMlQr_vqeGc",
+        "quiz": null
+      },
+      {
+        "videoUrl": "https://www.youtube.com/embed/dqgLEKjBP1k",
+        "quiz": null
+      },
+      {
+        "videoUrl": "https://www.youtube.com/embed/8CnnGIf2ob8",
+        "quiz": null
+      }
+    ]
+  }
+] 
