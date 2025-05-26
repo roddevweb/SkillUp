@@ -3,8 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Skillup.Backend.Data;
 using SkillUp.DTOs;
 using SkillUp.Models;
+using System.Net.Mail;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+using System.Net;
+using System.Net.Mail;
 
 namespace SkillUp.Controllers
 {
@@ -13,10 +17,12 @@ namespace SkillUp.Controllers
     public class AuthController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IConfiguration _configuration;
 
-        public AuthController(ApplicationDbContext context)
+        public AuthController(ApplicationDbContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         [HttpPost("register")]
@@ -37,9 +43,39 @@ namespace SkillUp.Controllers
 
             _context.Utilisateur.Add(utilisateur);
             await _context.SaveChangesAsync();
-
+            await SendRegistrationEmailAsync(utilisateur.Email, utilisateur.Nom);
             return Ok(new { message = "Inscription réussie." });
         }
+
+        private async Task SendRegistrationEmailAsync(string toEmail, string userName)
+        {
+            var emailSettings = new
+            {
+                SmtpServer = _configuration["EmailSettings:SmtpServer"],
+                SmtpPort = int.Parse(_configuration["EmailSettings:SmtpPort"]),
+                SenderName = _configuration["EmailSettings:SenderName"],
+                SenderEmail = _configuration["EmailSettings:SenderEmail"],
+                SenderPassword = _configuration["EmailSettings:SenderPassword"]
+            };
+
+            using var client = new SmtpClient(emailSettings.SmtpServer, emailSettings.SmtpPort)
+            {
+                Credentials = new NetworkCredential(emailSettings.SenderEmail, emailSettings.SenderPassword),
+                EnableSsl = true
+            };
+
+            var mail = new MailMessage
+            {
+                From = new MailAddress(emailSettings.SenderEmail, emailSettings.SenderName),
+                Subject = "Registration Successful",
+                Body = $"Hello {userName},\n\nYour registration was successful!\n\nThank you for joining SkillUp.",
+                IsBodyHtml = false
+            };
+            mail.To.Add(toEmail);
+
+            await client.SendMailAsync(mail);
+        }
+
 
     }
 }
