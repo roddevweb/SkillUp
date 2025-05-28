@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc; 
 using Microsoft.EntityFrameworkCore;
 using Skillup.Backend.Data;
 using SkillUp.DTOs;
@@ -7,8 +7,6 @@ using System.Net.Mail;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
-using System.Net;
-using System.Net.Mail;
 
 namespace SkillUp.Controllers
 {
@@ -76,6 +74,11 @@ namespace SkillUp.Controllers
             await client.SendMailAsync(mail);
         }
 
-
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("jwt");
+            return Ok(new { message = "Déconnexion réussie." });
+        }
     }
 }

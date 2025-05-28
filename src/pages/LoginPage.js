@@ -57,7 +57,7 @@ const LoginPage = () => {
             window.location.href = '/dashboard'; 
           }
 
-          window.location.href = '/courses'; 
+          window.location.href = '/dashboard'; 
         }
       })
       .catch(error => {
