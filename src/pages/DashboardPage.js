@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import { FiSettings } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 
 const languages = [
   { name: 'Anglais', icon: <span style={{fontSize: 28}}>🇬🇧</span> },
@@ -21,7 +23,21 @@ const levels = [
 const DashboardPage = () => {
   // TODO: Récupérer le nom de l'utilisateur connecté depuis l'API backend (Utilisateur.nom)
   // Exemple : const userName = userContext.nom;
-  const userName = '';
+  const [userName, setUserName] = useState('');
+
+useEffect(() => {
+  const fetchUser = async () => {
+    try {
+      const response = await axios.get('http://localhost:5223/api/utilisateur/1') 
+      setUserName(response.data.nom);
+    } catch (error) {
+      console.error('Erreur lors de la récupération du nom:', error);
+    }
+  };
+
+  fetchUser();
+}, []);
+
 
   // TODO: Récupérer la liste des langues disponibles depuis l'API backend (CoursLangue.langue)
   // const languages = ...
@@ -37,6 +53,7 @@ const DashboardPage = () => {
     }
    
   };
+
 
   return (
     <div style={{ background: '#fff', minHeight: '100vh', padding: '40px 0' }}>

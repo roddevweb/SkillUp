@@ -17,5 +17,7 @@ namespace SkillUp.Models
 
         [Required]
         public string MotDePasse { get; set; }
+
+        
     }
 }

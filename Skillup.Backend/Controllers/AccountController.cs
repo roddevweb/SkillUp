@@ -3,6 +3,7 @@ using SkillUp.Models;
 using System.Threading.Tasks;
 using System.Linq;
 using Skillup.Backend.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace SkillUp.Controllers
 {
@@ -28,6 +29,27 @@ namespace SkillUp.Controllers
             if (utilisateur == null || utilisateur.MotDePasse != model.Password)
             {
                 return Unauthorized(new { message = "Email ou mot de passe incorrect." });
+            }
+
+            return Ok(new
+            {
+                id = utilisateur.Id,
+                nom = utilisateur.Nom,
+                email = utilisateur.Email
+            });
+        }
+
+        [HttpGet]
+        [Route("api/utilisateur/{id}")]
+        public async Task<IActionResult> GetUtilisateurById(int id)
+        {
+            var utilisateur = await _context.Utilisateur
+                .AsNoTracking()
+                .FirstOrDefaultAsync(u => u.Id == id);
+
+            if (utilisateur == null)
+            {
+                return NotFound(new { message = "Utilisateur non trouvé." });
             }
 
             return Ok(new
