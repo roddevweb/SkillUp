@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Button, Form, Card, Nav } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../context/UserContext';
 
 const tabs = [
   { key: 'compte', label: 'Compte', icon: '👤' },
@@ -13,13 +14,15 @@ const tabs = [
 const SettingsPage = () => {
   const [activeTab, setActiveTab] = useState('compte');
   const navigate = useNavigate();
+  const { user, loading } = useUser();
 
-  // Mock user data
-  const [user, setUser] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
+  if (loading) {
+    return (
+      <Container className="text-center mt-5">
+        <div>Chargement...</div>
+      </Container>
+    );
+  }
 
   return (
     <div style={{ background: '#f8f9fa', minHeight: '100vh', padding: '40px 0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -63,7 +66,7 @@ const SettingsPage = () => {
                   <Form>
                     <Form.Group className="mb-3">
                       <Form.Label>Nom d'utilisateur</Form.Label>
-                      <Form.Control type="text" value={user.username} readOnly />
+                      <Form.Control type="text" value={user.nom} readOnly />
                     </Form.Group>
                     <Form.Group className="mb-3">
                       <Form.Label>Email</Form.Label>

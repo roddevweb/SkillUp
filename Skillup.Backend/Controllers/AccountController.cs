@@ -56,7 +56,8 @@ namespace SkillUp.Controllers
             {
                 id = utilisateur.Id,
                 nom = utilisateur.Nom,
-                email = utilisateur.Email
+                email = utilisateur.Email,
+                password = utilisateur.MotDePasse
             });
         }
     }
