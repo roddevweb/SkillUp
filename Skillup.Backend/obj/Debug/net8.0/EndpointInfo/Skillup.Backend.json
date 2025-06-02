@@ -102,6 +102,70 @@
         }
       }
     },
+    "/api/Cours": {
+      "get": {
+        "tags": [
+          "Cours"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Cours"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CoursLangue"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CoursLangue"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CoursLangue"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Cours/{id}": {
+      "delete": {
+        "tags": [
+          "Cours"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Profil": {
       "get": {
         "tags": [
@@ -329,6 +393,32 @@
   },
   "components": {
     "schemas": {
+      "CoursLangue": {
+        "required": [
+          "langue",
+          "niveau"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "langue": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "niveau": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "contenu": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "LoginViewModel": {
         "required": [
           "email",

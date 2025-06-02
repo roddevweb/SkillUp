@@ -26,6 +26,48 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "CoursController",
+    "Method": "GetCours",
+    "RelativePath": "api/Cours",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CoursController",
+    "Method": "AddCours",
+    "RelativePath": "api/Cours",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cours",
+        "Type": "CoursLangue",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CoursController",
+    "Method": "DeleteCours",
+    "RelativePath": "api/Cours/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SkillUp.Controllers.AccountController",
     "Method": "Login",
     "RelativePath": "api/login",

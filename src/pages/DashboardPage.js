@@ -3,6 +3,7 @@ import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import { FiSettings } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useUser } from '../context/UserContext';
 
 
 const languages = [
@@ -23,35 +24,23 @@ const levels = [
 const DashboardPage = () => {
   // TODO: Récupérer le nom de l'utilisateur connecté depuis l'API backend (Utilisateur.nom)
   // Exemple : const userName = userContext.nom;
-  const [userName, setUserName] = useState('');
-
-useEffect(() => {
-  const fetchUser = async () => {
-    try {
-      const response = await axios.get('http://localhost:5223/api/utilisateur/1') 
-      setUserName(response.data.nom);
-    } catch (error) {
-      console.error('Erreur lors de la récupération du nom:', error);
-    }
-  };
-
-  fetchUser();
-}, []);
-
-
-  // TODO: Récupérer la liste des langues disponibles depuis l'API backend (CoursLangue.langue)
-  // const languages = ...
-
-  // TODO: Récupérer le niveau sélectionné et la langue depuis l'API backend ou le contexte utilisateur (CoursLangue.niveau)
+  const { user, loading } = useUser();
   const [selectedLang, setSelectedLang] = useState(null);
   const [selectedLevel, setSelectedLevel] = useState(null);
   const navigate = useNavigate();
+
+  if (loading) {
+    return (
+      <Container className="text-center mt-5">
+        <div>Chargement...</div>
+      </Container>
+    );
+  }
 
   const handleStart = () => {
     if (selectedLang === 'Anglais' && selectedLevel === 'Parfait pour commencer') {
       navigate('/course/anglais-debutant');
     }
-   
   };
 
 
@@ -63,14 +52,14 @@ useEffect(() => {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
             <div style={{ fontWeight: 600, color: '#888', fontSize: 18 }}>Dashboard</div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-              <span style={{ fontWeight: 500, color: '#232323', fontSize: 16 }}><i className="bi bi-person"></i> {userName}</span>
+              <span style={{ fontWeight: 500, color: '#232323', fontSize: 16 }}><i className="bi bi-person"></i> {user.nom}</span>
               <Button variant="link" style={{ color: '#232323', fontSize: 22, padding: 0 }} href="/settings">
                 <FiSettings />
               </Button>
             </div>
           </div>
           {/* Contenu principal*/}
-          <div className="text-center mb-4" style={{ fontSize: 32, fontWeight: 700 }}>Bienvenue {userName || '[Nom de l\'utilisateur]'} !</div>
+          <div className="text-center mb-4" style={{ fontSize: 32, fontWeight: 700 }}>Bienvenue {user.nom} !</div>
           <div className="text-center mb-4" style={{ fontSize: 18, color: '#555' }}>Choisissez la langue que vous souhaitez apprendre pour débuter votre parcours.</div>
           <Row className="justify-content-center mb-4" style={{ gap: 0 }}>
             {languages.map((lang, idx) => (

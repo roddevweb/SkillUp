@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using Skillup.Backend.Data;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -16,49 +17,57 @@ public class CoursController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetCours()
     {
-        var cours = await _context.CoursLangues.ToListAsync();
+        var cours = await _context.CoursLangue.ToListAsync();
         return Ok(cours);
     }
 
     [HttpPost]
     public async Task<IActionResult> AddCours([FromBody] CoursLangue cours)
     {
-        _context.CoursLangues.Add(cours);
+        _context.CoursLangue.Add(cours);
         await _context.SaveChangesAsync();
         return Ok(cours);
     }
 
-    [HttpPut("{id}/commencer")]
-    public async Task<IActionResult> CommencerCours(int id)
-    {
-        var cours = await _context.CoursLangues.FindAsync(id);
-        if (cours == null) return NotFound();
+    // Olga : 
+    // CoursLangue entity has properties (EnCours, Termine) that do not exist in your MySQL table.
+    //Your table only has:
+    //•	id(int, PK, auto-increment)
+    //•	langue(varchar)
+    //•	niveau(varchar, nullable)
+    //•	contenu(text, nullable)
 
-        cours.CommencerCours();
-        await _context.SaveChangesAsync();
+    //[HttpPut("{id}/commencer")]
+    //public async Task<IActionResult> CommencerCours(int id)
+    //{
+    //    var cours = await _context.CoursLangue.FindAsync(id);
+    //    if (cours == null) return NotFound();
 
-        return Ok(cours);
-    }
+    //    cours.CommencerCours();
+    //    await _context.SaveChangesAsync();
 
-    [HttpPut("{id}/terminer")]
-    public async Task<IActionResult> TerminerCours(int id)
-    {
-        var cours = await _context.CoursLangues.FindAsync(id);
-        if (cours == null) return NotFound();
+    //    return Ok(cours);
+    //}
 
-        cours.TerminerCours();
-        await _context.SaveChangesAsync();
+    //[HttpPut("{id}/terminer")]
+    //public async Task<IActionResult> TerminerCours(int id)
+    //{
+    //    var cours = await _context.CoursLangue.FindAsync(id);
+    //    if (cours == null) return NotFound();
 
-        return Ok(cours);
-    }
+    //    cours.TerminerCours();
+    //    await _context.SaveChangesAsync();
+
+    //    return Ok(cours);
+    //}
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteCours(int id)
     {
-        var cours = await _context.CoursLangues.FindAsync(id);
+        var cours = await _context.CoursLangue.FindAsync(id);
         if (cours == null) return NotFound();
 
-        _context.CoursLangues.Remove(cours);
+        _context.CoursLangue.Remove(cours);
         await _context.SaveChangesAsync();
 
         return NoContent();

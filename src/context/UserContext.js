@@ -6,37 +6,39 @@ import axios from 'axios';
 export const UserContext = createContext(null);
 
 export const UserProvider = ({ children }) => {
-  // TODO: Remplacer les données mockées par une récupération via API backend après authentification
   const [user, setUser] = useState({
     id: null,
     nom: '',
-    email: '',
-    password: ''
+    email: ''
   });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get('http://localhost:5223/api/utilisateur/1');
-        setUser({
-          id: response.data.id,
-          nom: response.data.nom,
-          email: response.data.email,
-          password: response.data.password
-        });
-      } catch (error) {
-        console.error('Erreur lors de la récupération des données:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUser();
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      fetchUserData(userId);
+    } else {
+      setLoading(false);
+    }
   }, []);
 
+  const fetchUserData = async (userId) => {
+    try {
+      const response = await axios.get(`http://localhost:5223/api/utilisateur/${userId}`);
+      setUser({
+        id: response.data.id,
+        nom: response.data.nom,
+        email: response.data.email
+      });
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, loading }}>
       {children}
     </UserContext.Provider>
   );

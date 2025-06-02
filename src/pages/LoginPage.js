@@ -24,46 +24,30 @@ const LoginPage = () => {
     setErrorMessage('');
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    if (!validateEmail(formData.email)) {
-      setErrorMessage("Veuillez inclure un '@' dans l'adresse courriel");
-      return;
-    }
-
-    fetch('http://localhost:5223/api/login', {
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await fetch('http://localhost:5223/api/login', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        email: formData.email,
-        password: formData.password,
-        rememberMe: formData.rememberMe
-      })
-    })
-      .then(async response => {
-        if (!response.ok) {
-          const error = await response.json();
-          setErrorMessage(error.message || 'Erreur de connexion');
-        } else {
-          const userData = await response.json();
-          console.log('Utilisateur connecté:', userData);
-          
+      body: JSON.stringify(formData),
+    });
 
-          if (userData.token) {
-            localStorage.setItem('authToken', userData.token);
-            window.location.href = '/dashboard'; 
-          }
-
-          window.location.href = '/dashboard'; 
-        }
-      })
-      .catch(error => {
-        setErrorMessage('Erreur serveur: ' + error.message);
-      });
-  };
+    const data = await response.json();
+    
+    if (response.ok) {
+      localStorage.setItem('userId', data.id);
+      window.location.href = '/dashboard';
+    } else {
+      setErrorMessage(data.message || 'Erreur de connexion');
+    }
+  } catch (error) {
+    console.error('Erreur:', error);
+    setErrorMessage('Erreur de connexion au serveur');
+  }
+};
 
   return (
     <div className="login-page py-5">
