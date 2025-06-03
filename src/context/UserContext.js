@@ -9,7 +9,8 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({
     id: null,
     nom: '',
-    email: ''
+    email: '',
+    password: ''
   });
   const [loading, setLoading] = useState(true);
 
@@ -28,7 +29,8 @@ export const UserProvider = ({ children }) => {
       setUser({
         id: response.data.id,
         nom: response.data.nom,
-        email: response.data.email
+        email: response.data.email,
+        password: response.data.password
       });
     } catch (error) {
       console.error('Erreur lors de la récupération des données:', error);
