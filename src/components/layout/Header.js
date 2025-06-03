@@ -48,9 +48,8 @@ const Header = ({ minimal }) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto">
             <Nav.Link as={Link} to="/" className="nav-link px-3">Accueil</Nav.Link>
-            <Nav.Link as={Link} to="/courses" className="nav-link px-3">Cours</Nav.Link>
             <Nav.Link as={Link} to="/languages" className="nav-link px-3">Langues</Nav.Link>
-            <Nav.Link as={Link} to="/pricing" className="nav-link px-3">Tarifs</Nav.Link>
+            <Nav.Link as={Link} to="/tarifs" className="nav-link px-3">Tarifs</Nav.Link>
             <Nav.Link as={Link} to="/about" className="nav-link px-3">À propos</Nav.Link>
           </Nav>
           <div className="ms-auto">
