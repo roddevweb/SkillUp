@@ -39,6 +39,22 @@ namespace SkillUp.Controllers
             });
         }
 
+        [HttpDelete]
+        [Route("api/utilisateur/{id}")]
+        public async Task<IActionResult> DeleteUtilisateur(int id)
+        {
+            var utilisateur = await _context.Utilisateur.FindAsync(id);
+            if (utilisateur == null)
+            {
+                return NotFound(new { message = "Utilisateur non trouvé." });
+            }
+
+            _context.Utilisateur.Remove(utilisateur);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
         [HttpGet]
         [Route("api/utilisateur/{id}")]
         public async Task<IActionResult> GetUtilisateurById(int id)

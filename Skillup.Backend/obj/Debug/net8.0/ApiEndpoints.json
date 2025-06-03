@@ -194,6 +194,22 @@
   },
   {
     "ContainingType": "SkillUp.Controllers.AccountController",
+    "Method": "DeleteUtilisateur",
+    "RelativePath": "api/utilisateur/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SkillUp.Controllers.AccountController",
     "Method": "GetUtilisateurById",
     "RelativePath": "api/utilisateur/{id}",
     "HttpMethod": "GET",

@@ -16,6 +16,27 @@ const SettingsPage = () => {
   const navigate = useNavigate();
   const { user, loading } = useUser();
 
+  const handleDeleteAccount = async () => {
+    if (window.confirm('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.')) {
+      try {
+        const response = await fetch(`http://localhost:5223/api/utilisateur/${user.id}`, {
+          method: 'DELETE'
+        });
+
+        if (response.ok) {
+          localStorage.removeItem('userId');
+          navigate('/login');
+        } else {
+          const error = await response.json();
+          alert(error.message || 'Erreur lors de la suppression du compte');
+        }
+      } catch (error) {
+        console.error('Erreur:', error);
+        alert('Erreur lors de la suppression du compte');
+      }
+    }
+  };
+
   if (loading) {
     return (
       <Container className="text-center mt-5">
@@ -78,7 +99,13 @@ const SettingsPage = () => {
                     </Form.Group>
                   </Form>
                   <hr />
-                  <Button variant="outline-danger" size="sm">Supprimer le compte</Button>
+                  <Button 
+                    variant="outline-danger" 
+                    size="sm"
+                    onClick={handleDeleteAccount}
+                  >
+                    Supprimer le compte
+                  </Button>
                 </Card.Body>
               </Card>
             )}
