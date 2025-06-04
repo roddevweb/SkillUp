@@ -17,7 +17,7 @@ namespace Skillup.Backend.Data
 
         public DbSet<CoursLangue> CoursLangue { get; set; }
 
-
+        public DbSet<Administrateur> Administrateur { get; set; }
 
     }
 }

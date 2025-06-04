@@ -31,11 +31,15 @@ namespace SkillUp.Controllers
                 return Unauthorized(new { message = "Email ou mot de passe incorrect." });
             }
 
+            // VÃ©rifie si l'utilisateur est administrateur
+            bool isAdmin = _context.Administrateur.Any(a => a.email == utilisateur.Email);
+
             return Ok(new
             {
                 id = utilisateur.Id,
                 nom = utilisateur.Nom,
-                email = utilisateur.Email
+                email = utilisateur.Email,
+                isAdmin = isAdmin
             });
         }
 
@@ -46,7 +50,7 @@ namespace SkillUp.Controllers
             var utilisateur = await _context.Utilisateur.FindAsync(id);
             if (utilisateur == null)
             {
-                return NotFound(new { message = "Utilisateur non trouvé." });
+                return NotFound(new { message = "Utilisateur non trouvÃ©." });
             }
 
             _context.Utilisateur.Remove(utilisateur);
@@ -65,7 +69,7 @@ namespace SkillUp.Controllers
 
             if (utilisateur == null)
             {
-                return NotFound(new { message = "Utilisateur non trouvé." });
+                return NotFound(new { message = "Utilisateur non trouvÃ©." });
             }
 
             return Ok(new
@@ -75,6 +79,16 @@ namespace SkillUp.Controllers
                 email = utilisateur.Email,
                 password = utilisateur.MotDePasse
             });
+        }
+
+        [HttpGet]
+        [Route("api/utilisateurs")]
+        public async Task<IActionResult> GetAllUtilisateurs()
+        {
+            var utilisateurs = await _context.Utilisateur
+                .Select(u => new { id = u.Id, nom = u.Nom, email = u.Email })
+                .ToListAsync();
+            return Ok(utilisateurs);
         }
     }
 }

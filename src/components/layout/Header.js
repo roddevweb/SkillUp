@@ -52,8 +52,17 @@ const Header = ({ minimal }) => {
             <Nav.Link as={Link} to="/tarifs" className="nav-link px-3">Tarifs</Nav.Link>
             <Nav.Link as={Link} to="/about" className="nav-link px-3">À propos</Nav.Link>
           </Nav>
-          <div className="ms-auto">
-            <Button className="btn-action" onClick={() => navigate('/login')}>Se connecter</Button>
+          <div className="ms-auto" style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+            {user && user.id ? (
+              <>
+                <span style={{ fontWeight: 500, color: '#232323', fontSize: 16 }}><i className="bi bi-person"></i> {userName}</span>
+                <Button variant="link" style={{ color: '#232323', fontSize: 22, padding: 0 }} onClick={() => navigate('/settings')} title="Paramètres">
+                  <FiSettings />
+                </Button>
+              </>
+            ) : (
+              <Button className="btn-action" onClick={() => navigate('/login')}>Se connecter</Button>
+            )}
           </div>
         </Navbar.Collapse>
       </Container>

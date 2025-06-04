@@ -39,7 +39,11 @@ const LoginPage = () => {
     
     if (response.ok) {
       localStorage.setItem('userId', data.id);
-      window.location.href = '/dashboard';
+      if (data.isAdmin) {
+        window.location.href = '/admin';
+      } else {
+        window.location.href = '/dashboard';
+      }
     } else {
       setErrorMessage(data.message || 'Erreur de connexion');
     }
