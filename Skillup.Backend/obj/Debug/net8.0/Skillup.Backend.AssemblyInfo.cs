@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Skillup.Backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+610c87acf3c83a831b9e7ab36028ff12b04b74fc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+060d8ac43c3d17d0d1f43817346fdfb32f5c922a")]
 [assembly: System.Reflection.AssemblyProductAttribute("Skillup.Backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Skillup.Backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
