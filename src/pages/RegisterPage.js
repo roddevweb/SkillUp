@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button, Card, Alert } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Card, Alert, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './RegisterPage.css';
 // Remplacer l'image locale par une URL externe
@@ -14,6 +14,7 @@ const RegisterPage = () => {
     acceptTerms: false
   });
   const [errorMessage, setErrorMessage] = useState('');
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const validateEmail = (email) => {
     return email.includes('@') && email.includes('.');
@@ -75,9 +76,9 @@ const RegisterPage = () => {
     if (!response.ok) {
       setErrorMessage(result.message || 'Erreur lors de l’inscription');
     } else {
-      alert('Inscription réussie');
+      setShowSuccess(true);
       // Redirection vers la page de connexion (à compléter si nécessaire)
-      window.location.href = '/login'; 
+      // window.location.href = '/login'; 
     }
   } catch (err) {
     setErrorMessage('Erreur serveur');
@@ -207,6 +208,21 @@ const RegisterPage = () => {
             </div>
           </Col>
         </Row>
+
+        {/* Modal de sucesso */}
+        <Modal show={showSuccess} onHide={() => { setShowSuccess(false); window.location.href = '/login'; }} centered>
+          <Modal.Header closeButton>
+            <Modal.Title>Inscription réussie</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            Votre compte a été créé avec succès !<br/>Vous pouvez maintenant vous connecter.
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={() => { setShowSuccess(false); window.location.href = '/login'; }}>
+              OK
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Container>
     </div>
   );

@@ -1,12 +1,11 @@
 {
   "Version": 1,
-  "Hash": "EkAtphtOeld0w1GJQOtmSCp4fPpSoFdnCTozlVx+a2c=",
+  "Hash": "SMrQgeNmHKWjszaFo79XxncME7UDHSCmI5RROpfR9Mo=",
   "Source": "Skillup.Backend",
   "BasePath": "_content/Skillup.Backend",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "Assets": []
 }

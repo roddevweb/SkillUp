@@ -14,7 +14,7 @@ const tabs = [
 const SettingsPage = () => {
   const [activeTab, setActiveTab] = useState('compte');
   const navigate = useNavigate();
-  const { user, loading } = useUser();
+  const { user, loading, setUser } = useUser();
 
   const handleDeleteAccount = async () => {
     if (window.confirm('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.')) {
@@ -25,6 +25,7 @@ const SettingsPage = () => {
 
         if (response.ok) {
           localStorage.removeItem('userId');
+          setUser({ id: null, nom: '', email: '', password: '' });
           navigate('/login');
         } else {
           const error = await response.json();
@@ -53,6 +54,8 @@ const SettingsPage = () => {
           style={{ position: 'absolute', top: 24, right: 24, zIndex: 2 }}
           onClick={() => {
             localStorage.removeItem('authToken');
+            localStorage.removeItem('userId');
+            setUser({ id: null, nom: '', email: '', password: '' });
             navigate('/login');
           }}
         >

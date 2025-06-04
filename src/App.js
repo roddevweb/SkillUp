@@ -13,29 +13,31 @@ import AboutPage from './pages/AboutPage';
 import TarifsPage from './pages/TarifsPage';
 import CoursesPage from './pages/CoursesPage';
 import LanguagesPage from './pages/LanguagesPage';
+import AdminPage from './pages/AdminPage';
 import './App.css';
 
 function App() {
   return (
     <UserProvider>
-      <Router>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/settings" element={<SettingsPage />} />
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
             <Route path="/course/anglais-debutant" element={<CoursePage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/tarifs" element={<TarifsPage />} />
             <Route path="/courses" element={<CoursesPage />} />
             <Route path="/languages" element={<LanguagesPage />} />
-            {/* Ajoutez d'autres routes ici au besoin */}
-          </Routes>
-        </Layout>
-      </Router>
+            <Route path="/admin" element={<AdminPage />} />
+          {/* Ajoutez d'autres routes ici au besoin */}
+        </Routes>
+      </Layout>
+    </Router>
     </UserProvider>
   );
 }
