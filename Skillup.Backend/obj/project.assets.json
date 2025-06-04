@@ -1158,24 +1158,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Rodrigo Web\\.nuget\\packages\\": {}
+    "C:\\Users\\omorg\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\M-MSI-CA\\College-Rodrigo\\CEGEP-GERALD-GODIN\\4-Sessao\\Projeto\\app\\skillup\\Skillup.Backend\\Skillup.Backend.csproj",
+      "projectUniqueName": "C:\\projects\\SkillUp\\Skillup.Backend\\Skillup.Backend.csproj",
       "projectName": "Skillup.Backend",
-      "projectPath": "F:\\M-MSI-CA\\College-Rodrigo\\CEGEP-GERALD-GODIN\\4-Sessao\\Projeto\\app\\skillup\\Skillup.Backend\\Skillup.Backend.csproj",
-      "packagesPath": "C:\\Users\\Rodrigo Web\\.nuget\\packages\\",
-      "outputPath": "F:\\M-MSI-CA\\College-Rodrigo\\CEGEP-GERALD-GODIN\\4-Sessao\\Projeto\\app\\skillup\\Skillup.Backend\\obj\\",
+      "projectPath": "C:\\projects\\SkillUp\\Skillup.Backend\\Skillup.Backend.csproj",
+      "packagesPath": "C:\\Users\\omorg\\.nuget\\packages\\",
+      "outputPath": "C:\\projects\\SkillUp\\Skillup.Backend\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Rodrigo Web\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\omorg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1188,7 +1196,13 @@
         "warnAsError": [
           "NU1605"
         ]
-      }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -1234,7 +1248,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.116/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

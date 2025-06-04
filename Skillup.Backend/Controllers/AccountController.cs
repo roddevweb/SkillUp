@@ -90,5 +90,28 @@ namespace SkillUp.Controllers
                 .ToListAsync();
             return Ok(utilisateurs);
         }
+
+        [HttpPut]
+        [Route("api/utilisateur/{id}")]
+        public async Task<IActionResult> UpdateUtilisateur(int id, [FromBody] Utilisateur updatedUser)
+        {
+            if (string.IsNullOrWhiteSpace(updatedUser.Nom) || string.IsNullOrWhiteSpace(updatedUser.Email))
+            {
+                return BadRequest(new { message = "Nom et email sont obligatoires." });
+            }
+
+            var utilisateur = await _context.Utilisateur.FindAsync(id);
+            if (utilisateur == null)
+            {
+                return NotFound(new { message = "Utilisateur non trouvé." });
+            }
+
+            utilisateur.Nom = updatedUser.Nom;
+            utilisateur.Email = updatedUser.Email;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Utilisateur modifié avec succès !" });
+        }
     }
 }
